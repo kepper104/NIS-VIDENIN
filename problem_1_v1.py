@@ -2,6 +2,7 @@ from random import shuffle
 from time import sleep
 
 
+# В этой имплементации в классе хранится только имя животного, а звуки подтягиваются по обращению в словарь
 class Animal:
     def __init__(self, name):
         self.Name = name
@@ -31,7 +32,7 @@ print("--------------------")
 sleep(1)
 
 for i in animals:
-    print(i.Name + " makes sound " + sounds[i.Name])
+    print(f'{i.Name} makes sound "{sounds[i.Name]}"')
     sleep(0.5)
 
 print("--------------------")
@@ -50,7 +51,7 @@ for i in animal_names:
             break
         else:
             attempts -= 1
-            print(f"No, {i} doesn't make sound {ans}, you have {attempts} left. Try again!")
+            print(f'No, {i} does not make sound "{ans}", you have {attempts} attempt(s) left. Try again!')
 
 if attempts <= 0:
     print("--------------------")

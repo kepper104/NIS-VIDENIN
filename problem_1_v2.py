@@ -1,6 +1,8 @@
 from random import shuffle
 from time import sleep
 
+# В этой имплементации в классе хранится и имя и звук животного, так словарь нам нужен только
+# при создании инстанций класса, а распечатать звуки можно когда угодно без него
 
 
 class Animal:
@@ -23,8 +25,8 @@ sounds = {
 
 
 animals = []
-for i in sounds:
-    animals.append(Animal(i))
+for i in sounds.items():
+    animals.append(Animal(i[0], i[1]))
 
 
 print("Lets now learn what sounds animals make!")
@@ -33,7 +35,7 @@ print("--------------------")
 sleep(1)
 
 for i in animals:
-    print(i.Name + " makes sound " + sounds[i.Name])
+    print(f'{i.Name} makes sound "{i.Sound}"')
     sleep(0.5)
 
 print("--------------------")
@@ -41,18 +43,17 @@ print("Now you will take a test. You will have 3 attempts, if you make more than
 print("--------------------")
 
 attempts = 3
-animal_names = list(sounds.keys())
-shuffle(animal_names)
+shuffle(animals)
 
-for i in animal_names:
+for i in animals:
     while attempts > 0:
-        ans = input(f"What sound does {i} make?  ").lower()
-        if ans == sounds[i]:
+        ans = input(f"What sound does {i.Name} make?  ").lower()
+        if ans == i.Sound:
             print("That's right!")
             break
         else:
             attempts -= 1
-            print(f"No, {i} doesn't make sound {ans}, you have {attempts} left. Try again!")
+            print(f'No, {i.Name} does not make sound "{ans}", you have {attempts} attempt(s) left. Try again!')
 
 if attempts <= 0:
     print("--------------------")
